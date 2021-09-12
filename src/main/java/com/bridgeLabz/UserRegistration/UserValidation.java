@@ -34,12 +34,16 @@ public class UserValidation {
 		boolean checkPhone = Pattern.matches("([9][1][ ])[0-9]{10}", phone);
 
 		System.out.println("Phone number check : " + checkPhone);
-		
-		String password = s.next();
-		
+
+		String password = s.nextLine();
+
 		boolean rule1 = Pattern.matches("[a-zA-Z]{8,}", password);
-		
+
 		System.out.println("Rule 1 : " + rule1);
+
+		boolean rule2 = Pattern.matches("(?=.*[A-Z]).+", password);
+
+		System.out.println("Rule 2 : " + rule2);
 
 	}
 }
