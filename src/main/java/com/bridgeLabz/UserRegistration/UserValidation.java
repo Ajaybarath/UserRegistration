@@ -38,7 +38,7 @@ public class UserValidation {
 
 		String password = s.nextLine();
 
-		boolean checkPassword = userValidation.checkPassword(password);
+		boolean checkPassword =  userValidation.checkPassword(password);
 
 	}
 	
