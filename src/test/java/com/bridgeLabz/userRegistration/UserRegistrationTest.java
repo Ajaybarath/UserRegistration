@@ -1,6 +1,8 @@
 package com.bridgeLabz.userRegistration;
 
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.bridgeLabz.UserRegistration.UserValidation;
 
@@ -66,6 +68,14 @@ public class UserRegistrationTest {
 		boolean checkPassword =  userValidation.checkPassword(password);
 		
 		Assert.assertEquals(true, checkPassword);
+	}
+	
+	@ParameterizedTest
+	@ValueSource(strings = {"abc.xyz@bl.co.in", "abc.xyz@bl.co",  "abc@bl.co", "abc@bl.co.in"})
+	void isBlank_ShouldReturnTrueForNullOrBlankStrings(String input) {
+		UserValidation userValidation = new UserValidation();
+		
+		Assert.assertEquals(true,userValidation.checkEmail(input));
 	}
 
 }
