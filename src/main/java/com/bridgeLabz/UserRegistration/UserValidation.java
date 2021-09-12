@@ -16,17 +16,8 @@ public class UserValidation {
 
 		String firstName = s.nextLine();
 
-		boolean checkFirstName;
-		try {
-			checkFirstName = userValidation.checkFirstName(firstName);
-			System.out.println("First name check : " + checkFirstName);
-
-		} catch (InvalidUserDetailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "enter a valid name");
-
-		}
+		boolean checkFirstName = userValidation.checkFirstName(firstName);
+		System.out.println("First name check : " + checkFirstName);
 
 		String secondName = s.nextLine();
 
@@ -56,14 +47,20 @@ public class UserValidation {
 		boolean checkFirstName = Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
 
 		if (checkFirstName != true) {
-			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, detail);
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "Enter a valid first name");
 		}
 
 		return true;
 	}
 
-	public boolean checkSecondName(String detail) {
-		return Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
+	public boolean checkSecondName(String detail) throws InvalidUserDetailException {
+		boolean check = Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
+
+		if (check != true) {
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "Enter a valid second name");
+		}
+
+		return true;
 	}
 
 	public boolean checkEmail(String detail) {
