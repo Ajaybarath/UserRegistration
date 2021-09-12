@@ -83,7 +83,7 @@ public class UserValidation {
 		return true;
 	}
 
-	public boolean checkPassword(String password) {
+	public boolean checkPassword(String password) throws InvalidUserDetailException {
 		boolean rule1 = Pattern.matches(".{8,}", password);
 
 		boolean rule2 = Pattern.matches("(?=.*[A-Z]).+", password);
@@ -91,8 +91,14 @@ public class UserValidation {
 		boolean rule3 = Pattern.matches("(?=.*\\d).+", password);
 
 		boolean rule4 = Pattern.matches("(?=.*[.,:;\\'!@#$%^&*_+=|(){}]).+", password);
+		
+		boolean check = rule1 && rule2 && rule3 && rule4;
 
-		return rule1 && rule2 && rule3 && rule4;
+		if (check != true) {
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "Enter a valid password");
+		}
+
+		return true;
 
 	}
 
