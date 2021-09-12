@@ -37,7 +37,7 @@ public class UserValidation {
 
 		String password = s.nextLine();
 
-		boolean rule1 = Pattern.matches("[a-zA-Z0-9]{8,}", password);
+		boolean rule1 = Pattern.matches(".{8,}", password);
 
 		System.out.println("Rule 1 : " + rule1);
 
@@ -48,6 +48,10 @@ public class UserValidation {
 		boolean rule3 = Pattern.matches("(?=.*\\d).+", password);
 
 		System.out.println("Rule 3 : " + rule3);
+		
+		boolean rule4 = Pattern.matches("(?=.*[.,:;\\'!@#$%^&*_+=|(){}]).+", password);
+
+		System.out.println("Rule 4 : " + rule4);
 
 	}
 }
