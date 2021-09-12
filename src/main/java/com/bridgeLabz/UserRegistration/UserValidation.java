@@ -10,48 +10,66 @@ public class UserValidation {
 
 		Scanner s = new Scanner(System.in);
 
+		UserValidation userValidation = new UserValidation();
+		
 		String firstName = s.nextLine();
 
-		boolean checkFirstName = Pattern.matches("[A-Z][a-zA-Z]{3,}", firstName);
+		boolean checkFirstName = userValidation.checkFirstName(firstName);
 
 		System.out.println("First name check : " + checkFirstName);
 
 		String secondName = s.nextLine();
 
-		boolean checkSecondName = Pattern.matches("[A-Z][a-zA-Z]{3,}", secondName);
+		boolean checkSecondName = userValidation.checkSecondName(secondName);
 
 		System.out.println("Second name check : " + checkSecondName);
 
 		String email = s.nextLine();
 
-		boolean checkEmail = Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)",
-				email);
+		boolean checkEmail = userValidation.checkEmail(email);
 
 		System.out.println("Email check : " + checkEmail);
 
 		String phone = s.nextLine();
 
-		boolean checkPhone = Pattern.matches("([9][1][ ])[0-9]{10}", phone);
+		boolean checkPhone = userValidation.checkPhone(phone);
 
 		System.out.println("Phone number check : " + checkPhone);
 
 		String password = s.nextLine();
 
-		boolean rule1 = Pattern.matches(".{8,}", password);
+		boolean checkPassword = userValidation.checkPassword(password);
 
-		System.out.println("Rule 1 : " + rule1);
+	}
+	
+	public boolean checkFirstName(String detail) {
+		return Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
+	}
+	
+	public boolean checkSecondName(String detail) {
+		return Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
+	}
+	
+	public boolean checkEmail(String detail) {
+		return Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)",
+				detail);
+	}
+	
+	public boolean checkPhone(String detail) {
+		return Pattern.matches("([9][1][ ])[0-9]{10}", detail);
+	}
+	
+	public boolean checkPassword(String password) {
+		boolean rule1 = Pattern.matches(".{8,}", password);
 
 		boolean rule2 = Pattern.matches("(?=.*[A-Z]).+", password);
 
-		System.out.println("Rule 2 : " + rule2);
-		
 		boolean rule3 = Pattern.matches("(?=.*\\d).+", password);
-
-		System.out.println("Rule 3 : " + rule3);
 		
 		boolean rule4 = Pattern.matches("(?=.*[.,:;\\'!@#$%^&*_+=|(){}]).+", password);
-
-		System.out.println("Rule 4 : " + rule4);
+		
+		return rule1 && rule2 && rule3 && rule4;
 
 	}
+	
 }
