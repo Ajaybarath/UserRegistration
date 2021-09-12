@@ -9,7 +9,7 @@ import junit.framework.Assert;
 public class UserRegistrationTest {
 	
 	@Test
-	public void testFirstAndLastName() {
+	public void testFirstName() {
 		
 		String firstName = "Ajay";
 		
@@ -18,6 +18,18 @@ public class UserRegistrationTest {
 		boolean checkFirstName = userValidation.checkFirstName(firstName);
 		
 		Assert.assertEquals(true, checkFirstName);
+	}
+	
+	@Test
+	public void testLastName() {
+		
+		String secondName = "Barath";
+		
+		UserValidation userValidation = new UserValidation();
+		
+		boolean checkSecondName = userValidation.checkSecondName(secondName);
+		
+		Assert.assertEquals(true, checkSecondName);
 	}
 
 }
