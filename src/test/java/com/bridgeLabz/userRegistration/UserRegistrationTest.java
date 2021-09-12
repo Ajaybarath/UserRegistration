@@ -31,5 +31,17 @@ public class UserRegistrationTest {
 		
 		Assert.assertEquals(true, checkSecondName);
 	}
+	
+	@Test
+	public void testEmail() {
+		
+		String email = "abc@bl.co.in";
+		
+		UserValidation userValidation = new UserValidation();
+		
+		boolean checkEmail = userValidation.checkEmail(email);
+		
+		Assert.assertEquals(true, checkEmail);
+	}
 
 }
