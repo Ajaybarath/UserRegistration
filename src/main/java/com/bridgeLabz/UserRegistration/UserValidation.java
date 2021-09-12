@@ -3,20 +3,30 @@ package com.bridgeLabz.UserRegistration;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.bridgeLabz.UserRegistration.InvalidUserDetailException.ExceptionType;
+
 public class UserValidation {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InvalidUserDetailException {
 		System.out.println("Hello world");
 
 		Scanner s = new Scanner(System.in);
 
 		UserValidation userValidation = new UserValidation();
-		
+
 		String firstName = s.nextLine();
 
-		boolean checkFirstName = userValidation.checkFirstName(firstName);
+		boolean checkFirstName;
+		try {
+			checkFirstName = userValidation.checkFirstName(firstName);
+			System.out.println("First name check : " + checkFirstName);
 
-		System.out.println("First name check : " + checkFirstName);
+		} catch (InvalidUserDetailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "enter a valid name");
+
+		}
 
 		String secondName = s.nextLine();
 
@@ -38,38 +48,43 @@ public class UserValidation {
 
 		String password = s.nextLine();
 
-		boolean checkPassword =  userValidation.checkPassword(password);
+		boolean checkPassword = userValidation.checkPassword(password);
 
 	}
-	
-	public boolean checkFirstName(String detail) {
-		return Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
+
+	public boolean checkFirstName(String detail) throws InvalidUserDetailException {
+		boolean checkFirstName = Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
+
+		if (checkFirstName != true) {
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, detail);
+		}
+
+		return true;
 	}
-	
+
 	public boolean checkSecondName(String detail) {
 		return Pattern.matches("[A-Z][a-zA-Z]{3,}", detail);
 	}
-	
+
 	public boolean checkEmail(String detail) {
-		return Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)",
-				detail);
+		return Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)", detail);
 	}
-	
+
 	public boolean checkPhone(String detail) {
 		return Pattern.matches("([9][1][ ])[0-9]{10}", detail);
 	}
-	
+
 	public boolean checkPassword(String password) {
 		boolean rule1 = Pattern.matches(".{8,}", password);
 
 		boolean rule2 = Pattern.matches("(?=.*[A-Z]).+", password);
 
 		boolean rule3 = Pattern.matches("(?=.*\\d).+", password);
-		
+
 		boolean rule4 = Pattern.matches("(?=.*[.,:;\\'!@#$%^&*_+=|(){}]).+", password);
-		
+
 		return rule1 && rule2 && rule3 && rule4;
 
 	}
-	
+
 }
