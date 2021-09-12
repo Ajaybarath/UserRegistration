@@ -55,5 +55,17 @@ public class UserRegistrationTest {
 		
 		Assert.assertEquals(true, checkPhone);
 	}
+	
+	@Test
+	public void testPassword() {
+		
+		String password = "hgfFH65@#hd";
+		
+		UserValidation userValidation = new UserValidation();
+		
+		boolean checkPassword =  userValidation.checkPassword(password);
+		
+		Assert.assertEquals(true, checkPassword);
+	}
 
 }
