@@ -10,24 +10,30 @@ public class UserValidation {
 
 		Scanner s = new Scanner(System.in);
 
-		String firstName = s.next();
+		String firstName = s.nextLine();
 
 		boolean checkFirstName = Pattern.matches("[A-Z][a-zA-Z]{3,}", firstName);
 
 		System.out.println("First name check : " + checkFirstName);
 
-		String secondName = s.next();
+		String secondName = s.nextLine();
 
 		boolean checkSecondName = Pattern.matches("[A-Z][a-zA-Z]{3,}", secondName);
 
 		System.out.println("Second name check : " + checkSecondName);
-		
-		String email = s.next();
-		
-		boolean checkEmail = Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)", email);
-		
+
+		String email = s.nextLine();
+
+		boolean checkEmail = Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)",
+				email);
+
 		System.out.println("Email check : " + checkEmail);
 
+		String phone = s.nextLine();
+
+		boolean checkPhone = Pattern.matches("([9][1][ ])[0-9]{10}", phone);
+
+		System.out.println("Phone number check : " + checkPhone);
 
 	}
 }
