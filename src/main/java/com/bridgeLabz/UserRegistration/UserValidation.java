@@ -73,8 +73,14 @@ public class UserValidation {
 		return true;
 	}
 
-	public boolean checkPhone(String detail) {
-		return Pattern.matches("([9][1][ ])[0-9]{10}", detail);
+	public boolean checkPhone(String detail) throws InvalidUserDetailException {
+		boolean check = Pattern.matches("([9][1][ ])[0-9]{10}", detail);
+
+		if (check != true) {
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "Enter a valid phone number");
+		}
+
+		return true;
 	}
 
 	public boolean checkPassword(String password) {
