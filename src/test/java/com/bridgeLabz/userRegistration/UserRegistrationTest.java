@@ -43,5 +43,17 @@ public class UserRegistrationTest {
 		
 		Assert.assertEquals(true, checkEmail);
 	}
+	
+	@Test
+	public void testPhone() {
+		
+		String phone = "91 9965775758";
+		
+		UserValidation userValidation = new UserValidation();
+		
+		boolean checkPhone = userValidation.checkPhone(phone);
+		
+		Assert.assertEquals(true, checkPhone);
+	}
 
 }
