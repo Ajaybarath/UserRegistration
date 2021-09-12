@@ -21,6 +21,13 @@ public class UserValidation {
 		boolean checkSecondName = Pattern.matches("[A-Z][a-zA-Z]{3,}", secondName);
 
 		System.out.println("Second name check : " + checkSecondName);
+		
+		String email = s.next();
+		
+		boolean checkEmail = Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)", email);
+		
+		System.out.println("Email check : " + checkEmail);
+
 
 	}
 }
