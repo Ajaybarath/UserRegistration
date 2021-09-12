@@ -63,8 +63,14 @@ public class UserValidation {
 		return true;
 	}
 
-	public boolean checkEmail(String detail) {
-		return Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)", detail);
+	public boolean checkEmail(String detail) throws InvalidUserDetailException {
+		boolean check = Pattern.matches("([a][b][c][.]?){1}([a-zA-Z]{3,})?[@]([b][l][.][c][o][.]?[i]?[n]?)", detail);
+
+		if (check != true) {
+			throw new InvalidUserDetailException(ExceptionType.INVALID_FIRST_NAME, "Enter a valid email");
+		}
+
+		return true;
 	}
 
 	public boolean checkPhone(String detail) {
