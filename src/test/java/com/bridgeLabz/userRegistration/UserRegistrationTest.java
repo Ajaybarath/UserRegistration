@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import com.bridgeLabz.UserRegistration.InvalidUserDetailException;
 import com.bridgeLabz.UserRegistration.UserValidation;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class UserRegistrationTest {
 	
