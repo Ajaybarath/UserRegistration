@@ -3,7 +3,7 @@ package com.bridgeLabz.UserRegistration;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-interface Validation{
+interface Validation {
 	boolean validate(String regex, String input);
 	
 	public static void printResult(String regex, String input, String parameter, Validation validation) {
@@ -17,9 +17,9 @@ interface Validation{
 	}
 }
 
-public class UserValidation {
+public class UserValidation implements UserValidationInterface{
 	
-	public static String inputCall(String parameter) {
+	public String inputCall(String parameter) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Enter " + parameter);
 		return s.nextLine();
@@ -31,16 +31,17 @@ public class UserValidation {
 			return Pattern.matches(regex, input);
 		};
 		
+		UserValidationInterface userValidation = new UserValidation();
 
-		String firstName = inputCall("FirstName");
+		String firstName = userValidation.inputCall("FirstName");
 
-		String secondName = inputCall("SecondName");
+		String secondName = userValidation.inputCall("SecondName");
 
-		String email = inputCall("Email");
+		String email = userValidation.inputCall("Email");
 
-		String phone = inputCall("Phone");
+		String phone = userValidation.inputCall("Phone");
 
-		String password = inputCall("Password");
+		String password = userValidation.inputCall("Password");
 		
 		Validation.printResult("[A-Z][a-zA-Z]{3,}",firstName, "FirstName", userDetailCheck);
 		Validation.printResult("[A-Z][a-zA-Z]{3,}",secondName, "SecondName", userDetailCheck);
